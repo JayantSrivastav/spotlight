@@ -25,14 +25,14 @@ export default defineSchema({
 
   likes: defineTable({
     userId: v.id("users"),
-    postId: v.id("posts"),
+    postId: v.id("post"),
   })
     .index("by_post", ["postId"])
     .index("by_user_and_post", ["userId", "postId"]),
 
   comments: defineTable({
     userId: v.id("users"),
-    postId: v.id("posts"),
+    postId: v.id("post"),
     content: v.string(),
   }).index("by_post", ["postId"]),
 
@@ -54,7 +54,7 @@ export default defineSchema({
 
   bookmarks: defineTable({
     userId: v.id("users"),
-    postId: v.id("posts"),
+    postId: v.id("post"),
   })
     .index("by_user", ["userId"])
     .index("by_post", ["postId"])
