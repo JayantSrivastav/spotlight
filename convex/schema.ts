@@ -14,7 +14,7 @@ export default defineSchema({
     clerkId: v.string(),
   }).index("by_clerk_id", ["clerkId"]),
 
-  posts: defineTable({
+  post: defineTable({
     userId: v.id("users"),
     imageUrl: v.string(),
     storageId: v.id("_storage"), // will be needed when we want to delete a post

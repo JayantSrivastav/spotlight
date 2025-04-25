@@ -15,11 +15,23 @@ export const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 0.5,
     borderBottomColor: COLORS.surface,
+  },
+  headerLeft: {
+    width: 50, // Adjust as needed
+    justifyContent: 'center', // Center the back button vertically
+  },
+  headerCenter: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  headerRight: {
+    width: 70, // Adjust as needed
+    alignItems: 'flex-end',
+    justifyContent: 'center', // Center the share button vertically
   },
   headerTitle: {
     fontSize: 18,

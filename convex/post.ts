@@ -4,6 +4,8 @@ import { mutation } from "./_generated/server";
 export const generateUploadUrl = mutation(async (ctx) => {
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) throw new Error("Unauthorized");
+
+  // Generate the URL for the upload
   return await ctx.storage.generateUploadUrl();
 });
 
@@ -24,10 +26,12 @@ export const createPost = mutation({
 
     if (!currentUser) throw new Error("User not found");
 
+    // Get the image URL from storage
     const imageUrl = await ctx.storage.getUrl(args.storageId);
     if (!imageUrl) throw new Error("Image not found");
-    //create post
-    const postId = await ctx.db.insert("posts", {
+
+    // Create the post
+    const postId = await ctx.db.insert("post", {
       userId: currentUser._id,
       imageUrl,
       storageId: args.storageId,
@@ -36,10 +40,11 @@ export const createPost = mutation({
       comments: 0,
     });
 
-    //update user posts count
+    // Update user post count
     await ctx.db.patch(currentUser._id, {
       posts: currentUser.posts + 1,
     });
+
     return postId;
   },
 });
